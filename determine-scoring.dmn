@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="DecisionDMN" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.46.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <decision id="DMNScoring" name="Determine Scoring">
+    <informationRequirement id="InformationRequirement_12y9uk0">
+      <requiredInput href="#InputData_1bsmujo" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0wzlg4o">
+      <requiredInput href="#InputData_0zdehrg" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1x6tqbd">
+      <requiredInput href="#InputData_0ka6llo" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1fpzgyx" hitPolicy="FIRST">
+      <input id="Input_1" label="Income">
+        <inputExpression id="InputExpression_1" typeRef="number">
+          <text>income</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_01uez77" label="Debt Ratio">
+        <inputExpression id="LiteralExpression_1x29n4p" typeRef="number">
+          <text>debtRatio</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0hsp3y2" label="Score Buro">
+        <inputExpression id="LiteralExpression_0882ap7" typeRef="number">
+          <text>scoreBuro</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Scoring" name="scoringCustomer" typeRef="string">
+        <outputValues id="UnaryTests_0v6wept">
+          <text>"High Risk","No Profile","Standard","Premium"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_0t0wbq8">
+        <inputEntry id="UnaryTests_0tfskui">
+          <text>&gt;=3500</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18jxlvy">
+          <text>&lt;40</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11lraum">
+          <text>&gt;80</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06j6y7d">
+          <text>"Premium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pneln7">
+        <inputEntry id="UnaryTests_0cracxy">
+          <text>[1000..3500)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e6q359">
+          <text>[15..50]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07rsxrd">
+          <text>(41..80]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vpm6bx">
+          <text>"Standard"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_027drr7">
+        <inputEntry id="UnaryTests_115h0l3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1saphdw">
+          <text>&gt;=50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1euknr8">
+          <text>&lt;=40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mh43x8">
+          <text>"High Risk"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_162ze6j">
+        <inputEntry id="UnaryTests_0vokcqj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_015qfbn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_036lsvd">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1biwl6s">
+          <text>"No Profile"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1bsmujo" name="debtRatio" />
+  <inputData id="InputData_0zdehrg" name="income" />
+  <inputData id="InputData_0ka6llo" name="scoreBuro" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_14ubaav_di" dmnElementRef="DMNScoring">
+        <dc:Bounds height="80" width="180" x="355" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1rqdv2s" dmnElementRef="InputData_1bsmujo">
+        <dc:Bounds height="45" width="125" x="357" y="248" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_14geotw" dmnElementRef="InformationRequirement_12y9uk0">
+        <di:waypoint x="420" y="248" />
+        <di:waypoint x="445" y="180" />
+        <di:waypoint x="445" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1vt4g3b" dmnElementRef="InputData_0zdehrg">
+        <dc:Bounds height="45" width="125" x="178" y="248" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_19aud8a" dmnElementRef="InformationRequirement_0wzlg4o">
+        <di:waypoint x="241" y="248" />
+        <di:waypoint x="400" y="180" />
+        <di:waypoint x="400" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0d0jqmi" dmnElementRef="InputData_0ka6llo">
+        <dc:Bounds height="45" width="125" x="568" y="249" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1x4de2h" dmnElementRef="InformationRequirement_1x6tqbd">
+        <di:waypoint x="631" y="249" />
+        <di:waypoint x="490" y="180" />
+        <di:waypoint x="490" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

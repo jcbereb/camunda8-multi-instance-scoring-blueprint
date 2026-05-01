@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0q9v6rl" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.46.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:process id="ProcessScoring" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1xgyju7</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1xgyju7" sourceRef="StartEvent_1" targetRef="Activity_07k108n" />
+    <bpmn:businessRuleTask id="Activity_1rphy91" name="Determine scoring">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="DMNScoring" resultVariable="resultDMN" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=itemCustomer.income" target="income" />
+          <zeebe:input source="=itemCustomer.debtRatio" target="debtRatio" />
+          <zeebe:input source="=itemCustomer.scoreBuro" target="scoreBuro" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1facatu</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b3k6k3</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:extensionElements>
+          <zeebe:loopCharacteristics inputCollection="=Customer" inputElement="itemCustomer" outputCollection="finalScore" outputElement="={&#10;id: itemCustomer.id,  &#10;customer: itemCustomer.customer,&#10;email: itemCustomer.email,&#10;income: itemCustomer.income,&#10;debtRatio: itemCustomer.debtRatio,&#10;scoreBuro: itemCustomer.scoreBuro,  &#10;scoringResult: resultDMN&#10;}" />
+        </bpmn:extensionElements>
+      </bpmn:multiInstanceLoopCharacteristics>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_0qcutoy">
+      <bpmn:incoming>Flow_17ddyyx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1b3k6k3" sourceRef="Activity_1rphy91" targetRef="Activity_0pyr8l2" />
+    <bpmn:sequenceFlow id="Flow_1facatu" sourceRef="Activity_07k108n" targetRef="Activity_1rphy91" />
+    <bpmn:scriptTask id="Activity_07k108n" name="Prepare Customer Collection">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=for u in response.body return {&#10;    id: u.id,&#10;    customer: u.name,&#10;    email: u.email,&#10;    income: u.income,&#10;    debtRatio: u.debt_ratio,&#10;    scoreBuro: u.score_buro&#10;}" resultVariable="Customer" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xgyju7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1facatu</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:userTask id="Activity_0pyr8l2" name="Show scoring result">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="=[ &#34;group-&#34; + lower case(itemLevel.scoringResult) ]" />
+        <zeebe:formDefinition formId="Form_ScoringResult" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b3k6k3</bpmn:incoming>
+      <bpmn:outgoing>Flow_17ddyyx</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:extensionElements>
+          <zeebe:loopCharacteristics inputCollection="=finalScore" inputElement="itemLevel" />
+        </bpmn:extensionElements>
+      </bpmn:multiInstanceLoopCharacteristics>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_17ddyyx" sourceRef="Activity_0pyr8l2" targetRef="Event_0qcutoy" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ProcessScoring">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kwl8yf_di" bpmnElement="Activity_07k108n">
+        <dc:Bounds x="260" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j64czp_di" bpmnElement="Activity_1rphy91">
+        <dc:Bounds x="440" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qcutoy_di" bpmnElement="Event_0qcutoy">
+        <dc:Bounds x="842" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1htd0qe" bpmnElement="Activity_0pyr8l2">
+        <dc:Bounds x="630" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xgyju7_di" bpmnElement="Flow_1xgyju7">
+        <di:waypoint x="188" y="150" />
+        <di:waypoint x="260" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b3k6k3_di" bpmnElement="Flow_1b3k6k3">
+        <di:waypoint x="540" y="150" />
+        <di:waypoint x="630" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1facatu_di" bpmnElement="Flow_1facatu">
+        <di:waypoint x="360" y="150" />
+        <di:waypoint x="440" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17ddyyx_di" bpmnElement="Flow_17ddyyx">
+        <di:waypoint x="730" y="150" />
+        <di:waypoint x="842" y="150" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

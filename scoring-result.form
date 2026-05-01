@@ -1,0 +1,156 @@
+{
+  "components": [
+    {
+      "text": "# Show scoring result",
+      "type": "text",
+      "layout": {
+        "row": "Row_0sghc9b",
+        "columns": null
+      },
+      "id": "Field_0krz6p0"
+    },
+    {
+      "text": "id:",
+      "type": "text",
+      "layout": {
+        "row": "Row_0ohh8tn",
+        "columns": null
+      },
+      "id": "Field_0dpxc1x"
+    },
+    {
+      "text": "=itemLevel.id",
+      "type": "text",
+      "layout": {
+        "row": "Row_0ohh8tn",
+        "columns": null
+      },
+      "id": "Field_1rl1ji9"
+    },
+    {
+      "text": "Customer:",
+      "type": "text",
+      "layout": {
+        "row": "Row_0y239au",
+        "columns": null
+      },
+      "id": "Field_00ze28n"
+    },
+    {
+      "text": "=itemLevel.customer",
+      "type": "text",
+      "layout": {
+        "row": "Row_0y239au",
+        "columns": null
+      },
+      "id": "Field_09u2wnj"
+    },
+    {
+      "text": "Email:",
+      "type": "text",
+      "layout": {
+        "row": "Row_0hwqj80",
+        "columns": null
+      },
+      "id": "Field_0yhu2dx"
+    },
+    {
+      "text": "=itemLevel.email",
+      "type": "text",
+      "layout": {
+        "row": "Row_0hwqj80",
+        "columns": null
+      },
+      "id": "Field_1sp2muz"
+    },
+    {
+      "text": "Income:",
+      "type": "text",
+      "layout": {
+        "row": "Row_1mzp9wt",
+        "columns": null
+      },
+      "id": "Field_0puz0wf"
+    },
+    {
+      "text": "=itemLevel.income",
+      "type": "text",
+      "layout": {
+        "row": "Row_1mzp9wt",
+        "columns": null
+      },
+      "id": "Field_023o8lm"
+    },
+    {
+      "text": "Debt Ratio:",
+      "type": "text",
+      "layout": {
+        "row": "Row_14j1smz",
+        "columns": null
+      },
+      "id": "Field_169xb3h"
+    },
+    {
+      "text": "=itemLevel.debtRatio",
+      "type": "text",
+      "layout": {
+        "row": "Row_14j1smz",
+        "columns": null
+      },
+      "id": "Field_11qwqh3"
+    },
+    {
+      "text": "Score Buro:",
+      "type": "text",
+      "layout": {
+        "row": "Row_01cnr6o",
+        "columns": null
+      },
+      "id": "Field_16lx9i8"
+    },
+    {
+      "text": "=itemLevel.scoreBuro",
+      "type": "text",
+      "layout": {
+        "row": "Row_01cnr6o",
+        "columns": null
+      },
+      "id": "Field_042a6jj"
+    },
+    {
+      "type": "separator",
+      "layout": {
+        "row": "Row_19hfdb7",
+        "columns": null
+      },
+      "id": "Field_1tcec3x"
+    },
+    {
+      "text": "Result Scoring",
+      "type": "text",
+      "layout": {
+        "row": "Row_1d2i52h",
+        "columns": null
+      },
+      "id": "Field_1u9hg1m"
+    },
+    {
+      "text": "=\"Manage Customer: \" + itemLevel.customer + \" (Group: \" + itemLevel.scoringResult + \")\"",
+      "type": "text",
+      "layout": {
+        "row": "Row_1d2i52h",
+        "columns": null
+      },
+      "id": "Field_01iitsz"
+    }
+  ],
+  "type": "default",
+  "id": "Form_ScoringResult",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.9.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.46.1"
+  },
+  "schemaVersion": 19
+}
