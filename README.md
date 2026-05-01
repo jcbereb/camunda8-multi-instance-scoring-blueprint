@@ -15,6 +15,7 @@ The blueprint demonstrates how to transform raw data into actionable collections
 1.  **BPMN (`process-scoring.bpmn`)**: Main orchestrator that handles the logic for data preparation, evaluation, and user tasks.
 2.  **DMN (`determine-scoring.dmn`)**: Decision table with hit policy `FIRST` to classify clients into categories: *Premium, Standard, High Risk or No Profile*.
 3.  **Camunda Form (`scoring-result.form`)**: Dynamic form that uses text components with FEEL expressions to display the data of the current item in the iteration.
+4.  **Test Payload (`test-payload.json`)**: File with sample data ready to start an instance and validate multi-instance logic.
 
 ### Requirements
 *   Camunda 8 (Self-Managed o SaaS).
