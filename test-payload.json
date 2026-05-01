@@ -1,0 +1,38 @@
+{
+  "response": {
+    "body": [
+      {
+        "id": 101,
+        "name": "Juan Pérez",
+        "email": "juan.perez@ejemplo.com",
+        "income": 5500,
+        "debt_ratio": 25,
+        "score_buro": 720
+      },
+      {
+        "id": 102,
+        "name": "María García",
+        "email": "m.garcia@ejemplo.com",
+        "income": 2500,
+        "debt_ratio": 30,
+        "score_buro": 60
+      },
+      {
+        "id": 103,
+        "name": "Carlos López",
+        "email": "clopez@ejemplo.com",
+        "income": 12000,
+        "debt_ratio": 60,
+        "score_buro": 30
+      },
+      {
+        "id": 104,
+        "name": "Luis Castro",
+        "email": "lcastro@ejemplo.com",
+        "income": 500,
+        "debt_ratio": 10,
+        "score_buro": 50
+      }
+    ]
+  }
+}
