@@ -1,4 +1,5 @@
 # Dynamic Multi-Instance Scoring Blueprint (Camunda 8)
+![Process Diagram BPMN](assets/process-scoring.png)
 
 This repository contains an advanced executable pattern for orchestrating credit scoring processes using **Camunda 8**.
 The blueprint demonstrates how to transform raw data into actionable collections, evaluate complex business rules using **DMN**, and dynamically manage human intervention.
